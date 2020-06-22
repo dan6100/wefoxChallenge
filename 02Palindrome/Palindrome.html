@@ -1,0 +1,37 @@
+<html>
+<body>
+	<div> Is this a palindrome: <input type="text" id="inputText" value="Race Car">
+		<button onclick="run();">Check</button>
+	</div>
+
+	<div> Answer: 
+		<div id="answer"> </div>
+	</div>
+	
+	<script>
+
+		function palindrome(sentence) {
+			var regex = /[^A-Za-z0-9]/g;
+
+			var charactersOnlySentence = sentence.toLowerCase().replace(regex, '');
+			var reverseSentence = charactersOnlySentence.split('').reverse().join(''); 
+
+			if (reverseSentence === charactersOnlySentence) 
+			{
+				return true;
+			} else {
+				return false;
+			}
+		}	
+
+		function run()
+		{			
+			let answerElem = document.getElementById("answer");
+			let text = document.getElementById("inputText").value;
+			let result = palindrome(text);
+
+			answerElem.innerHTML = result;
+		}
+	</script>
+</body>
+</html>

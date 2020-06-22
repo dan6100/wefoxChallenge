@@ -1,0 +1,48 @@
+<html>
+<body>
+	<div>Which smallest number do you want to view: <input type="number" id="nthNumber" value="1">
+		<button onclick="run();">View result</button>
+	</div>
+
+	<div> Generated list:
+		<div style='word-break: break-all; word-wrap: break-word;' id="generated"> </div>
+	</div>
+
+	<div> Nth smallest: 
+		<div id="result"> </div>
+	</div>
+
+	<script>
+		function randomInt()
+		{
+			return Math.floor((Math.random() * 10000) + 1);
+		} 
+
+		function sortNumbers(a, b) {
+			return a > b ? 1 : b > a ? -1 : 0;
+		}		
+
+		function run()
+		{			
+			let generatedElem = document.getElementById("generated");
+			let resultElem = document.getElementById("result");
+			let nNumber = 1;
+			let nthSmallesNumber = null;
+			let randomNumbers = new Array(500).fill(null);
+
+			nNumber = document.getElementById("nthNumber").value;
+
+			randomNumbers = randomNumbers.map(randomInt);
+
+			generatedElem.innerHTML = JSON.stringify(randomNumbers);
+
+			randomNumbers.sort(sortNumbers);
+			
+			nthSmallesNumber = randomNumbers[nNumber-1];
+			
+			resultElem.innerHTML = nthSmallesNumber.toString();
+
+		}
+	</script>
+</body>
+</html>
